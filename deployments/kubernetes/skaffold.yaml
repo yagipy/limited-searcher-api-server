@@ -1,0 +1,23 @@
+apiVersion: skaffold/v2beta3
+kind: Config
+build:
+  artifacts:
+  - image: bff
+    context: ../../cmd/bff/
+  - image: file
+    context: ../../cmd/file/
+  - image: search
+    context: ../../cmd/search/
+  - image: url
+    context: ../../cmd/url/
+  - image: user
+    context: ../../cmd/user/
+deploy:
+  kubectl:
+    manifests:
+      - k8s-*
+      - ../../cmd/bff/kubernetes/*
+      - ../../cmd/file/kubernetes/*
+      - ../../cmd/search/kubernetes/*
+      - ../../cmd/url/kubernetes/*
+      - ../../cmd/user/kubernetes/*
